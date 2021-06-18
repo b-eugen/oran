@@ -7,7 +7,7 @@
                 "image": {
                     "registry": "nexus3.o-ran-sc.org:10002",
                     "name": "o-ran-sc/ric-app-ts",
-                    "tag": "1.0.11"
+                    "tag": "1.1.0"
                 }
             }
         ],
@@ -16,7 +16,7 @@
                 {
                     "name": "rmr-data",
                     "container": "trafficxapp",
-                    "port": 45600,
+                    "port": 4560,
                     "rxMessages": [
                         "TS_QOE_PREDICTION",
                         "A1_POLICY_REQ",
@@ -29,13 +29,13 @@
                 {
                     "name": "rmr-route",
                     "container": "trafficxapp",
-                    "port": 45601,
+                    "port": 4561,
                     "description": "rmr route port for mcxapp"
                 }
             ]
         },
         "rmr": {
-            "protPort": "tcp:45600",
+            "protPort": "tcp:4560",
             "maxSize": 2072,
             "numWorkers": 1,
             "txMessages": [
