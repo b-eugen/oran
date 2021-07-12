@@ -1,13 +1,13 @@
 {
-        "xapp_name": "trafficxapp",
-        "version": "1.0.0",
+        "xapp_name": "qp",
+        "version": "0.0.2",
         "containers": [
             {
-                "name": "trafficxapp",
+                "name": "qp",
                 "image": {
                     "registry": "nexus3.o-ran-sc.org:10002",
-                    "name": "o-ran-sc/ric-app-ts",
-                    "tag": "1.1.0"
+                    "name": "o-ran-sc/ric-app-qp",
+                    "tag": "0.0.3"
                 }
             }
         ],
@@ -15,22 +15,18 @@
             "ports": [
                 {
                     "name": "rmr-data",
-                    "container": "trafficxapp",
+                    "container": "qp",
                     "port": 4560,
-                    "rxMessages": [
-                        "TS_QOE_PREDICTION",
-                        "A1_POLICY_REQ",
-                        "TS_ANOMALY_UPDATE"
-                    ],
-                    "txMessages": [ "TS_UE_LIST", "TS_ANOMALY_ACK" ],
-                    "policies": [20008],
-                    "description": "rmr receive data port for mcxapp"
+                    "rxMessages": ["TS_QOE_PRED_REQ"],
+                    "txMessages": ["TS_QOE_PREDICTION"],
+                    "policies": [],
+                    "description": "rmr receive data port for qp"
                 },
                 {
                     "name": "rmr-route",
-                    "container": "trafficxapp",
+                    "container": "qp",
                     "port": 4561,
-                    "description": "rmr route port for mcxapp"
+                    "description": "rmr route port for qp"
                 }
             ]
         },
@@ -38,15 +34,8 @@
             "protPort": "tcp:4560",
             "maxSize": 2072,
             "numWorkers": 1,
-            "txMessages": [
-                "TS_UE_LIST",
-                "TS_ANOMALY_ACK"
-            ],
-            "rxMessages": [
-                "TS_QOE_PREDICTION",
-                "A1_POLICY_REQ",
-                "TS_ANOMALY_UPDATE"
-            ],
-            "policies": [20008]
+            "rxMessages": ["TS_QOE_PRED_REQ"],
+            "txMessages": ["TS_QOE_PREDICTION"],
+            "policies": []
         }
-    }
+}
